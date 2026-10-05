@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proyecto Final SENATI | Fundamentos y Algoritmia para IA</title>
+<meta name="description" content="Desarrollo completo y guiado del Proyecto Final de Fundamentos y Algoritmia para Inteligencia Artificial.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="logo-area"><img src="assets/logo_senati.png" alt="SENATI"><div><b>SENATI</b><small>Fundamentos y Algoritmia para IA</small></div></div>
+  <div class="instructor"><small>INSTRUCTOR</small><strong>Ing. Gunar Castro Iñigo</strong></div>
+  <div class="search"><input id="search" placeholder="Buscar tema o concepto..."></div>
+  <nav>
+    <a class="nav-item" href="#inicio"><span>•</span>Inicio</a>
+    <a class="nav-item" href="#datos"><span>•</span>Dataset</a>
+    <a class="nav-item" href="#capitulo-0"><span>00</span>Presentación y ruta de trabajo</a><a class="nav-item" href="#capitulo-1"><span>01</span>Leemos y conocemos el dataset</a><a class="nav-item" href="#capitulo-2"><span>02</span>Limpieza y preprocesamiento</a><a class="nav-item" href="#capitulo-3"><span>03</span>Álgebra lineal con NumPy</a><a class="nav-item" href="#capitulo-4"><span>04</span>Estadística y valores atípicos</a><a class="nav-item" href="#capitulo-5"><span>05</span>Gráficos e interpretación</a><a class="nav-item" href="#capitulo-6"><span>06</span>Modelo de Machine Learning</a><a class="nav-item" href="#capitulo-7"><span>07</span>Preguntas guía y conclusiones</a>
+    <a class="nav-item" href="#resultados"><span>•</span>Resultados</a>
+    <a class="nav-item" href="#archivos"><span>•</span>Archivos del proyecto</a>
+  </nav>
+  <div class="read-progress"><div><span>Avance de lectura</span><b id="pct">0%</b></div><div class="track"><i id="bar"></i></div></div>
+</aside>
+<div class="page">
+<header class="topbar"><button id="menu" aria-label="Menú">☰</button><div><b>Proyecto Final de Curso</b><small>Desarrollo completo y fundamentado</small></div><a href="files/python/PROYECTO_COMPLETO.py" download>Descargar código completo</a></header>
+<main>
+<section id="inicio" class="hero searchable">
+  <div class="hero-main">
+    <div class="eyebrow">TECNOLOGÍAS DE LA INFORMACIÓN · SENATI</div>
+    <h1>Análisis y Desarrollo de Algoritmos para Inteligencia Artificial con Fundamento Matemático</h1>
+    <p>Vamos a resolver el caso práctico con la misma lógica que utilizaríamos en una clase: primero entendemos el problema, luego conocemos los datos, los preparamos, aplicamos los fundamentos matemáticos y estadísticos, y recién después entrenamos el modelo.</p>
+    <div class="hero-buttons"><a class="primary" href="#capitulo-1">Empezar el desarrollo</a><a class="secondary" href="files/data/rendimiento_estudiantil_senati.csv" download>Descargar dataset</a></div>
+    <div class="tags"><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Scikit-learn</span></div>
+  </div>
+  <div class="summary-card"><div><small>REGISTROS</small><strong>260</strong></div><div><small>VARIABLES</small><strong>15</strong></div><div><small>MODELO</small><strong>Ridge</strong></div><div><small>R²</small><strong>0.6644</strong></div></div>
+</section>
+
+<section class="process-section searchable" aria-labelledby="process-title">
+  <div class="process-heading">
+    <div>
+      <div class="eyebrow">RUTA DEL PROYECTO</div>
+      <h2 id="process-title">Así vamos a desarrollar el trabajo</h2>
+      <p>El proyecto sigue una secuencia lógica. Cada etapa utiliza lo aprendido en la anterior, por eso es importante avanzar en este orden.</p>
+    </div>
+  </div>
+
+  <div class="process-flow">
+    <article class="process-card">
+      <div class="process-index">01</div>
+      <div class="process-content">
+        <h3>Dataset</h3>
+        <p>Leemos el archivo, revisamos las columnas y exploramos los datos antes de realizar cambios.</p>
+      </div>
+    </article>
+
+    <div class="process-arrow" aria-hidden="true">→</div>
+
+    <article class="process-card">
+      <div class="process-index">02</div>
+      <div class="process-content">
+        <h3>Preparación</h3>
+        <p>Tratamos valores nulos, normalizamos las variables numéricas y codificamos las categóricas.</p>
+      </div>
+    </article>
+
+    <div class="process-arrow" aria-hidden="true">→</div>
+
+    <article class="process-card">
+      <div class="process-index">03</div>
+      <div class="process-content">
+        <h3>Fundamento matemático</h3>
+        <p>Aplicamos álgebra lineal y estadística para comprender las operaciones utilizadas en Inteligencia Artificial.</p>
+      </div>
+    </article>
+
+    <div class="process-arrow" aria-hidden="true">→</div>
+
+    <article class="process-card">
+      <div class="process-index">04</div>
+      <div class="process-content">
+        <h3>Modelo de IA</h3>
+        <p>Entrenamos un modelo de regresión Ridge utilizando los datos previamente preparados.</p>
+      </div>
+    </article>
+
+    <div class="process-arrow" aria-hidden="true">→</div>
+
+    <article class="process-card">
+      <div class="process-index">05</div>
+      <div class="process-content">
+        <h3>Evaluación</h3>
+        <p>Analizamos las métricas, las predicciones obtenidas y explicamos qué significan los resultados.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="datos" class="chapter searchable">
+  <div class="chapter-header"><div class="chapter-number">D</div><div><div class="eyebrow">DATASET DEL PROYECTO</div><h2>Antes de programar, conozcamos nuestros datos</h2><p>Este dataset es sintético, pero fue construido con valores y relaciones realistas. El objetivo es practicar un flujo completo de Machine Learning sin afirmar que son datos reales de estudiantes.</p></div></div>
+  <div class="dataset-facts"><div><small>Filas</small><strong>260</strong></div><div><small>Columnas</small><strong>15</strong></div><div><small>Columnas con nulos</small><strong>5</strong></div><div><small>Variable objetivo</small><strong>promedio_final</strong></div></div>
+  <div class="table-wrap"><table><thead><tr><th>id_estudiante</th><th>edad</th><th>genero</th><th>horas_estudio_semana</th><th>asistencia_pct</th><th>tareas_completadas_pct</th><th>participacion_pct</th><th>uso_plataforma_horas</th><th>internet_calidad</th><th>tutorias_mes</th><th>promedio_prev</th><th>examen_parcial</th><th>proyecto_final</th><th>promedio_final</th><th>rendimiento_categoria</th></tr></thead><tbody><tr><td>1001</td><td>23</td><td>M</td><td>12.4</td><td>65.7</td><td>91.8</td><td>87.7</td><td>1.6</td><td>Alta</td><td>1</td><td>13.0</td><td>12.3</td><td>12.8</td><td>14.2</td><td>Bueno</td></tr><tr><td>1002</td><td>20</td><td>M</td><td>10.5</td><td>94.6</td><td>75.0</td><td>79.2</td><td>7.1</td><td>Media</td><td>5</td><td>6.4</td><td>12.4</td><td>14.2</td><td>12.0</td><td>Regular</td></tr><tr><td>1003</td><td>29</td><td>F</td><td>11.4</td><td></td><td>77.3</td><td>89.0</td><td>6.4</td><td>Alta</td><td>1</td><td>12.1</td><td>12.9</td><td>11.1</td><td>12.6</td><td>Regular</td></tr><tr><td>1004</td><td>27</td><td>F</td><td>13.5</td><td>77.4</td><td></td><td>30.6</td><td>8.4</td><td>Alta</td><td>1</td><td>10.3</td><td>14.5</td><td>13.1</td><td>13.9</td><td>Regular</td></tr><tr><td>1005</td><td>24</td><td>M</td><td>7.6</td><td>89.0</td><td>62.3</td><td>100.0</td><td>6.9</td><td>Media</td><td>0</td><td>13.3</td><td>15.7</td><td>15.3</td><td>14.2</td><td>Bueno</td></tr><tr><td>1006</td><td>29</td><td>F</td><td>19.8</td><td>100.0</td><td>83.4</td><td>71.9</td><td>3.3</td><td>Media</td><td>2</td><td>19.0</td><td>11.2</td><td>14.1</td><td>15.3</td><td>Bueno</td></tr><tr><td>1007</td><td>21</td><td>F</td><td>6.8</td><td>84.0</td><td>80.3</td><td>90.6</td><td>10.4</td><td>Media</td><td>1</td><td>13.9</td><td>9.5</td><td>12.1</td><td>12.5</td><td>Regular</td></tr><tr><td>1008</td><td>23</td><td>M</td><td>5.9</td><td></td><td>84.9</td><td>58.4</td><td>6.0</td><td>Alta</td><td>1</td><td></td><td>10.0</td><td>14.3</td><td>11.6</td><td>Regular</td></tr></tbody></table></div>
+  <div class="chapter-actions"><a href="files/data/rendimiento_estudiantil_senati.csv" download>Descargar dataset CSV</a><a href="files/data/diccionario_datos.txt" download>Descargar diccionario</a></div>
+</section>
+
+<section id="capitulo-0" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">00</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Presentación y ruta de trabajo</h2><p>Antes de escribir código, vamos a entender qué pide el trabajo y cómo vamos a resolverlo.</p></div>
+  </div>
+  <div class="lesson-text"><p>En este proyecto vamos a resolver, paso a paso, el caso práctico propuesto en el Trabajo Final. La idea no es copiar código sin entenderlo. Vamos a construir una solución con continuidad: primero conoceremos los datos, luego los prepararemos, después aplicaremos matemática y estadística, y recién al final entrenaremos un modelo de Machine Learning.</p>
+<p>El documento de trabajo solicita integrar <strong>Pandas, NumPy, estadística, álgebra lineal, gráficos y un modelo de clasificación o regresión con Scikit-learn</strong>. También pide responder preguntas guía y presentar una propuesta de solución coherente.</p>
+<h4>Caso que vamos a desarrollar</h4>
+<p>Trabajaremos con un conjunto de datos de <strong>rendimiento estudiantil</strong>. El objetivo será analizar qué variables se relacionan con el promedio final y entrenar un modelo de regresión que pueda estimarlo.</p>
+<div class="note"><strong>Nota:</strong> <strong>Importante:</strong> el dataset es sintético, pero fue construido con valores y relaciones realistas. Esto está permitido por el trabajo final, que indica que los datos pueden provenir de fuentes públicas o ser generados sintéticamente con Python.</div></div>
+<div class="lesson-text"><h4>¿Cómo está organizado el proyecto?</h4>
+<p>Seguiremos este orden:</p>
+<ol>
+<li>1. Leer y conocer el dataset.</li>
+<li>2. Detectar valores nulos y preparar los datos.</li>
+<li>3. Trabajar con vectores y matrices usando NumPy.</li>
+<li>4. Calcular media, mediana, varianza y desviación estándar.</li>
+<li>5. Detectar valores atípicos.</li>
+<li>6. Crear histogramas y gráficos de dispersión.</li>
+<li>7. Entrenar y evaluar un modelo de Machine Learning.</li>
+<li>8. Responder las preguntas guía y redactar conclusiones.</li>
+</ol>
+<p>Cada cuaderno tiene una explicación antes del código y un pequeño cierre. Así, cuando un estudiante lo lea en Jupyter, podrá seguir el proyecto como si estuviéramos desarrollándolo juntos en clase.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-0-1">Copiar código</button></div>
+<pre id="code-0-1"><code># Antes de empezar, vamos a comprobar que las librerías principales estén disponibles.
+# Si esta celda se ejecuta sin errores, podemos continuar con tranquilidad.
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sklearn
+
+print(&quot;Pandas:&quot;, pd.__version__)
+print(&quot;NumPy:&quot;, np.__version__)
+print(&quot;Scikit-learn:&quot;, sklearn.__version__)
+print(&quot;\nEntorno listo para comenzar el proyecto.&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Pandas: 2.2.3
+NumPy: 2.3.5
+Scikit-learn: 1.8.0
+
+Entorno listo para comenzar el proyecto.
+</pre></div>
+<div class="lesson-text"><h4>¿Qué haremos ahora?</h4>
+<p>En el siguiente cuaderno vamos a hacer algo muy sencillo pero muy importante: <strong>leer el archivo CSV y conocer qué información contiene</strong>. Antes de entrenar cualquier modelo, primero tenemos que entender nuestros datos.</p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/00_PRESENTACION_Y_RUTA.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/00_PRESENTACION_Y_RUTA.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-1" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">01</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Leemos y conocemos el dataset</h2><p>En esta ocasión vamos a abrir el archivo, revisar sus columnas y detectar posibles problemas antes de modificar los datos.</p></div>
+  </div>
+  <div class="lesson-text"><p>En esta ocasión vamos a <strong>leer el archivo <code>rendimiento_estudiantil_senati.csv</code></strong>. Antes de limpiar, normalizar o entrenar un modelo, necesitamos saber qué contiene el archivo.</p>
+<p>Cuando trabajamos en un proyecto real, nunca conviene empezar directamente con Machine Learning. Primero revisamos las columnas, observamos algunos registros y buscamos posibles problemas.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-1-1">Copiar código</button></div>
+<pre id="code-1-1"><code># Importamos Pandas porque nos permite trabajar con datos en forma de tabla.
+import pandas as pd
+
+# Indicamos la ruta del archivo CSV.
+ruta = &quot;../dataset/rendimiento_estudiantil_senati.csv&quot;
+
+# Leemos el archivo y lo guardamos en una variable llamada df.
+df = pd.read_csv(ruta)
+
+# Mostramos las primeras 10 filas para conocer cómo están organizados los datos.
+df.head(10)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><div class="jupyter-output"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_estudiante</th>
+      <th>edad</th>
+      <th>genero</th>
+      <th>horas_estudio_semana</th>
+      <th>asistencia_pct</th>
+      <th>tareas_completadas_pct</th>
+      <th>participacion_pct</th>
+      <th>uso_plataforma_horas</th>
+      <th>internet_calidad</th>
+      <th>tutorias_mes</th>
+      <th>promedio_prev</th>
+      <th>examen_parcial</th>
+      <th>proyecto_final</th>
+      <th>promedio_final</th>
+      <th>rendimiento_categoria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1001</td>
+      <td>23</td>
+      <td>M</td>
+      <td>12.4</td>
+      <td>65.7</td>
+      <td>91.8</td>
+      <td>87.7</td>
+      <td>1.6</td>
+      <td>Alta</td>
+      <td>1</td>
+      <td>13.0</td>
+      <td>12.3</td>
+      <td>12.8</td>
+      <td>14.2</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1002</td>
+      <td>20</td>
+      <td>M</td>
+      <td>10.5</td>
+      <td>94.6</td>
+      <td>75.0</td>
+      <td>79.2</td>
+      <td>7.1</td>
+      <td>Media</td>
+      <td>5</td>
+      <td>6.4</td>
+      <td>12.4</td>
+      <td>14.2</td>
+      <td>12.0</td>
+      <td>Regular</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1003</td>
+      <td>29</td>
+      <td>F</td>
+      <td>11.4</td>
+      <td>NaN</td>
+      <td>77.3</td>
+      <td>89.0</td>
+      <td>6.4</td>
+      <td>Alta</td>
+      <td>1</td>
+      <td>12.1</td>
+      <td>12.9</td>
+      <td>11.1</td>
+      <td>12.6</td>
+      <td>Regular</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1004</td>
+      <td>27</td>
+      <td>F</td>
+      <td>13.5</td>
+      <td>77.4</td>
+      <td>NaN</td>
+      <td>30.6</td>
+      <td>8.4</td>
+      <td>Alta</td>
+      <td>1</td>
+      <td>10.3</td>
+      <td>14.5</td>
+      <td>13.1</td>
+      <td>13.9</td>
+      <td>Regular</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1005</td>
+      <td>24</td>
+      <td>M</td>
+      <td>7.6</td>
+      <td>89.0</td>
+      <td>62.3</td>
+      <td>100.0</td>
+      <td>6.9</td>
+      <td>Media</td>
+      <td>0</td>
+      <td>13.3</td>
+      <td>15.7</td>
+      <td>15.3</td>
+      <td>14.2</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1006</td>
+      <td>29</td>
+      <td>F</td>
+      <td>19.8</td>
+      <td>100.0</td>
+      <td>83.4</td>
+      <td>71.9</td>
+      <td>3.3</td>
+      <td>Media</td>
+      <td>2</td>
+      <td>19.0</td>
+      <td>11.2</td>
+      <td>14.1</td>
+      <td>15.3</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1007</td>
+      <td>21</td>
+      <td>F</td>
+      <td>6.8</td>
+      <td>84.0</td>
+      <td>80.3</td>
+      <td>90.6</td>
+      <td>10.4</td>
+      <td>Media</td>
+      <td>1</td>
+      <td>13.9</td>
+      <td>9.5</td>
+      <td>12.1</td>
+      <td>12.5</td>
+      <td>Regular</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1008</td>
+      <td>23</td>
+      <td>M</td>
+      <td>5.9</td>
+      <td>NaN</td>
+      <td>84.9</td>
+      <td>58.4</td>
+      <td>6.0</td>
+      <td>Alta</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>10.0</td>
+      <td>14.3</td>
+      <td>11.6</td>
+      <td>Regular</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1009</td>
+      <td>26</td>
+      <td>M</td>
+      <td>15.9</td>
+      <td>76.9</td>
+      <td>82.0</td>
+      <td>83.2</td>
+      <td>6.4</td>
+      <td>Media</td>
+      <td>4</td>
+      <td>15.5</td>
+      <td>11.6</td>
+      <td>15.6</td>
+      <td>15.5</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1010</td>
+      <td>19</td>
+      <td>F</td>
+      <td>14.3</td>
+      <td>72.7</td>
+      <td>100.0</td>
+      <td>58.2</td>
+      <td>3.4</td>
+      <td>Media</td>
+      <td>2</td>
+      <td>14.2</td>
+      <td>12.0</td>
+      <td>8.2</td>
+      <td>12.9</td>
+      <td>Regular</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<div class="lesson-text"><h4>¿Qué estamos observando?</h4>
+<p>Cada fila representa a un estudiante y cada columna describe una característica: edad, horas de estudio, asistencia, tareas, participación, uso de plataforma, tutorías, notas anteriores y promedio final.</p>
+<p>Nuestra variable principal será <strong><code>promedio_final</code></strong>, porque más adelante intentaremos estimarla con un modelo de regresión.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 2</span></div><button class="copy" data-target="code-1-2">Copiar código</button></div>
+<pre id="code-1-2"><code># Ahora revisamos cuántas filas y columnas tiene el dataset.
+filas, columnas = df.shape
+print(f&quot;El dataset contiene {filas} registros y {columnas} columnas.&quot;)
+
+# También mostramos los nombres de las columnas.
+print(&quot;\nColumnas disponibles:&quot;)
+for columna in df.columns:
+    print(&quot;-&quot;, columna)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">El dataset contiene 260 registros y 15 columnas.
+
+Columnas disponibles:
+- id_estudiante
+- edad
+- genero
+- horas_estudio_semana
+- asistencia_pct
+- tareas_completadas_pct
+- participacion_pct
+- uso_plataforma_horas
+- internet_calidad
+- tutorias_mes
+- promedio_prev
+- examen_parcial
+- proyecto_final
+- promedio_final
+- rendimiento_categoria
+</pre></div>
+<div class="lesson-text"><h4>Revisamos los tipos de datos</h4>
+<p>Este paso nos ayuda a reconocer qué variables son numéricas y cuáles son categóricas. Esto será importante cuando lleguemos al preprocesamiento, porque no todas las columnas se preparan de la misma manera.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 3</span></div><button class="copy" data-target="code-1-3">Copiar código</button></div>
+<pre id="code-1-3"><code># info() nos muestra el tipo de cada columna y cuántos datos no nulos existen.
+df.info()</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">&lt;class &#x27;pandas.core.frame.DataFrame&#x27;&gt;
+RangeIndex: 260 entries, 0 to 259
+Data columns (total 15 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   id_estudiante           260 non-null    int64  
+ 1   edad                    260 non-null    int64  
+ 2   genero                  260 non-null    object 
+ 3   horas_estudio_semana    256 non-null    float64
+ 4   asistencia_pct          256 non-null    float64
+ 5   tareas_completadas_pct  256 non-null    float64
+ 6   participacion_pct       260 non-null    float64
+ 7   uso_plataforma_horas    256 non-null    float64
+ 8   internet_calidad        260 non-null    object 
+ 9   tutorias_mes            260 non-null    int64  
+ 10  promedio_prev           256 non-null    float64
+ 11  examen_parcial          260 non-null    float64
+ 12  proyecto_final          260 non-null    float64
+ 13  promedio_final          260 non-null    float64
+ 14  rendimiento_categoria   260 non-null    object 
+dtypes: float64(9), int64(3), object(3)
+memory usage: 30.6+ KB
+</pre></div>
+<div class="lesson-text"><h4>Buscamos valores faltantes</h4>
+<p>En un dataset real es normal encontrar datos incompletos. Aquí vamos a revisar cuántos valores nulos existen por columna. Más adelante decidiremos cómo tratarlos.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 4</span></div><button class="copy" data-target="code-1-4">Copiar código</button></div>
+<pre id="code-1-4"><code># isnull() identifica los valores vacíos y sum() los cuenta por columna.
+nulos = df.isnull().sum()
+
+# Mostramos solamente las columnas que realmente tienen datos faltantes.
+nulos[nulos &gt; 0]</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">horas_estudio_semana      4
+asistencia_pct            4
+tareas_completadas_pct    4
+uso_plataforma_horas      4
+promedio_prev             4
+dtype: int64</pre></div>
+<div class="lesson-text"><h4>Resumen estadístico inicial</h4>
+<p>Con <code>describe()</code> podemos revisar valores como promedio, desviación estándar, mínimos y máximos. Esto nos ayuda a detectar rápidamente datos que podrían estar fuera de lo normal.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 5</span></div><button class="copy" data-target="code-1-5">Copiar código</button></div>
+<pre id="code-1-5"><code># Resumen estadístico de las variables numéricas.
+df.describe().round(2)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><div class="jupyter-output"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_estudiante</th>
+      <th>edad</th>
+      <th>horas_estudio_semana</th>
+      <th>asistencia_pct</th>
+      <th>tareas_completadas_pct</th>
+      <th>participacion_pct</th>
+      <th>uso_plataforma_horas</th>
+      <th>tutorias_mes</th>
+      <th>promedio_prev</th>
+      <th>examen_parcial</th>
+      <th>proyecto_final</th>
+      <th>promedio_final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>260.00</td>
+      <td>260.00</td>
+      <td>256.00</td>
+      <td>256.00</td>
+      <td>256.00</td>
+      <td>260.00</td>
+      <td>256.00</td>
+      <td>260.00</td>
+      <td>256.00</td>
+      <td>260.00</td>
+      <td>260.00</td>
+      <td>260.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1130.50</td>
+      <td>23.91</td>
+      <td>10.80</td>
+      <td>81.80</td>
+      <td>79.64</td>
+      <td>74.20</td>
+      <td>6.82</td>
+      <td>2.25</td>
+      <td>13.01</td>
+      <td>12.84</td>
+      <td>13.63</td>
+      <td>13.36</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>75.20</td>
+      <td>4.05</td>
+      <td>4.32</td>
+      <td>10.67</td>
+      <td>12.71</td>
+      <td>14.74</td>
+      <td>3.44</td>
+      <td>1.45</td>
+      <td>2.82</td>
+      <td>3.05</td>
+      <td>2.71</td>
+      <td>1.66</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1001.00</td>
+      <td>17.00</td>
+      <td>1.00</td>
+      <td>41.00</td>
+      <td>38.10</td>
+      <td>30.60</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>5.20</td>
+      <td>4.10</td>
+      <td>5.90</td>
+      <td>9.40</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1065.75</td>
+      <td>20.00</td>
+      <td>7.80</td>
+      <td>75.10</td>
+      <td>70.95</td>
+      <td>63.68</td>
+      <td>4.40</td>
+      <td>1.00</td>
+      <td>11.00</td>
+      <td>11.10</td>
+      <td>11.70</td>
+      <td>12.20</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1130.50</td>
+      <td>24.00</td>
+      <td>10.70</td>
+      <td>81.95</td>
+      <td>80.65</td>
+      <td>74.75</td>
+      <td>6.60</td>
+      <td>2.00</td>
+      <td>13.15</td>
+      <td>12.70</td>
+      <td>13.80</td>
+      <td>13.30</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1195.25</td>
+      <td>28.00</td>
+      <td>13.40</td>
+      <td>89.55</td>
+      <td>88.22</td>
+      <td>83.52</td>
+      <td>8.90</td>
+      <td>3.00</td>
+      <td>14.72</td>
+      <td>14.72</td>
+      <td>15.60</td>
+      <td>14.50</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1260.00</td>
+      <td>30.00</td>
+      <td>31.50</td>
+      <td>100.00</td>
+      <td>100.00</td>
+      <td>100.00</td>
+      <td>23.50</td>
+      <td>7.00</td>
+      <td>19.00</td>
+      <td>20.00</td>
+      <td>20.00</td>
+      <td>18.20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<div class="lesson-text"><h4>Cierre de esta etapa</h4>
+<p>Ya conocemos la estructura del archivo. Hemos confirmado que existen variables numéricas y categóricas, y también detectamos algunos valores nulos. Esto es exactamente lo que necesitamos antes de limpiar los datos.</p>
+<p><strong>En el siguiente cuaderno vamos a preparar el dataset:</strong> rellenaremos valores faltantes, separaremos variables numéricas y categóricas, normalizaremos y codificaremos los datos.</p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/01_LEEMOS_Y_CONOCEMOS_EL_DATASET.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/01_LEEMOS_Y_CONOCEMOS_EL_DATASET.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-2" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">02</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Limpieza y preprocesamiento</h2><p>Ahora que conocemos el archivo, vamos a prepararlo para que pueda ser utilizado correctamente por un modelo.</p></div>
+  </div>
+  <div class="lesson-text"><p>Ya sabemos qué contiene nuestro archivo. Ahora vamos a prepararlo para que pueda ser utilizado por un modelo de Machine Learning.</p>
+<p>En esta etapa realizaremos tres tareas principales:</p>
+<ul>
+<li>completar valores faltantes;</li>
+<li>normalizar las variables numéricas;</li>
+<li>convertir las variables categóricas a un formato que el modelo pueda interpretar.</li>
+</ul>
+<p>La idea es que todo quede dentro de un <strong>pipeline</strong>, para que el procedimiento sea ordenado y reproducible.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-2-1">Copiar código</button></div>
+<pre id="code-2-1"><code>import pandas as pd
+
+# Volvemos a leer el dataset para que este cuaderno pueda ejecutarse de manera independiente.
+df = pd.read_csv(&quot;../dataset/rendimiento_estudiantil_senati.csv&quot;)
+
+# Revisamos nuevamente los valores faltantes antes de preparar los datos.
+df.isnull().sum()[df.isnull().sum() &gt; 0]</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">horas_estudio_semana      4
+asistencia_pct            4
+tareas_completadas_pct    4
+uso_plataforma_horas      4
+promedio_prev             4
+dtype: int64</pre></div>
+<div class="lesson-text"><h4>Separamos la variable que queremos predecir</h4>
+<p>En nuestro caso queremos estimar <code>promedio_final</code>. Por eso la guardaremos en <code>y</code>. El resto de las columnas que utilizaremos para aprender se guardarán en <code>X</code>.</p>
+<p>No usaremos <code>rendimiento_categoria</code> porque se obtiene a partir del promedio final y provocaría fuga de información.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 2</span></div><button class="copy" data-target="code-2-2">Copiar código</button></div>
+<pre id="code-2-2"><code># X contiene las variables de entrada.
+X = df.drop(columns=[&quot;promedio_final&quot;, &quot;rendimiento_categoria&quot;])
+
+# y contiene la variable objetivo.
+y = df[&quot;promedio_final&quot;]
+
+print(&quot;Dimensión de X:&quot;, X.shape)
+print(&quot;Dimensión de y:&quot;, y.shape)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Dimensión de X: (260, 13)
+Dimensión de y: (260,)
+</pre></div>
+<div class="lesson-text"><h4>Definimos las columnas numéricas y categóricas</h4>
+<p>Las variables numéricas se completarán con la <strong>mediana</strong> y después se normalizarán con <code>StandardScaler</code>.</p>
+<p>Las variables categóricas se completarán con el valor más frecuente y se transformarán con <code>OneHotEncoder</code>.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 3</span></div><button class="copy" data-target="code-2-3">Copiar código</button></div>
+<pre id="code-2-3"><code>columnas_numericas = [
+    &quot;edad&quot;, &quot;horas_estudio_semana&quot;, &quot;asistencia_pct&quot;,
+    &quot;tareas_completadas_pct&quot;, &quot;participacion_pct&quot;,
+    &quot;uso_plataforma_horas&quot;, &quot;tutorias_mes&quot;,
+    &quot;promedio_prev&quot;, &quot;examen_parcial&quot;, &quot;proyecto_final&quot;
+]
+
+columnas_categoricas = [&quot;genero&quot;, &quot;internet_calidad&quot;]
+
+print(&quot;Variables numéricas:&quot;, len(columnas_numericas))
+print(&quot;Variables categóricas:&quot;, len(columnas_categoricas))</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Variables numéricas: 10
+Variables categóricas: 2
+</pre></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 4</span></div><button class="copy" data-target="code-2-4">Copiar código</button></div>
+<pre id="code-2-4"><code># Importamos las herramientas de Scikit-learn que vamos a utilizar.
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+# Pipeline para las variables numéricas.
+proceso_numerico = Pipeline(steps=[
+    (&quot;imputar_nulos&quot;, SimpleImputer(strategy=&quot;median&quot;)),
+    (&quot;normalizar&quot;, StandardScaler())
+])
+
+# Pipeline para las variables categóricas.
+proceso_categorico = Pipeline(steps=[
+    (&quot;imputar_nulos&quot;, SimpleImputer(strategy=&quot;most_frequent&quot;)),
+    (&quot;codificar&quot;, OneHotEncoder(handle_unknown=&quot;ignore&quot;))
+])
+
+# Unimos ambos procesos en un solo transformador.
+preprocesador = ColumnTransformer(transformers=[
+    (&quot;numericas&quot;, proceso_numerico, columnas_numericas),
+    (&quot;categoricas&quot;, proceso_categorico, columnas_categoricas)
+])
+
+print(&quot;Preprocesador construido correctamente.&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Preprocesador construido correctamente.
+</pre></div>
+<div class="lesson-text"><h4>Separamos entrenamiento y prueba</h4>
+<p>No debemos entrenar y evaluar con los mismos registros. Por eso reservaremos el 20 % de los datos para comprobar después qué tan bien funciona el modelo con información que no utilizó durante el entrenamiento.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 5</span></div><button class="copy" data-target="code-2-5">Copiar código</button></div>
+<pre id="code-2-5"><code>X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.20,
+    random_state=42
+)
+
+print(&quot;Registros para entrenamiento:&quot;, len(X_train))
+print(&quot;Registros para prueba:&quot;, len(X_test))</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Registros para entrenamiento: 208
+Registros para prueba: 52
+</pre></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 6</span></div><button class="copy" data-target="code-2-6">Copiar código</button></div>
+<pre id="code-2-6"><code># Aplicamos el preprocesamiento a los datos de entrenamiento.
+X_train_procesado = preprocesador.fit_transform(X_train)
+
+# En los datos de prueba solamente transformamos; no volvemos a aprender parámetros.
+X_test_procesado = preprocesador.transform(X_test)
+
+print(&quot;Forma del conjunto de entrenamiento procesado:&quot;, X_train_procesado.shape)
+print(&quot;Forma del conjunto de prueba procesado:&quot;, X_test_procesado.shape)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Forma del conjunto de entrenamiento procesado: (208, 15)
+Forma del conjunto de prueba procesado: (52, 15)
+</pre></div>
+<div class="lesson-text"><h4>Cierre de esta etapa</h4>
+<p>Ya dejamos preparado el dataset para Machine Learning. Sin embargo, antes de entrenar el modelo vamos a desarrollar la parte matemática solicitada en el trabajo final.</p>
+<p><strong>En el siguiente cuaderno trabajaremos con vectores, matrices, producto punto, norma y un sistema de ecuaciones lineales usando NumPy.</strong></p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/02_LIMPIEZA_Y_PREPROCESAMIENTO.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/02_LIMPIEZA_Y_PREPROCESAMIENTO.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-3" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">03</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Álgebra lineal con NumPy</h2><p>Vamos a relacionar las operaciones con vectores y matrices con los fundamentos matemáticos que utiliza la inteligencia artificial.</p></div>
+  </div>
+  <div class="lesson-text"><p>Ahora vamos a desarrollar la parte de <strong>álgebra lineal</strong> solicitada en el trabajo final.</p>
+<p>En Machine Learning, los datos suelen representarse mediante vectores y matrices. Por ejemplo, las características de un estudiante pueden verse como un vector, mientras que todo el conjunto de estudiantes forma una matriz.</p>
+<p>En esta ocasión practicaremos las operaciones fundamentales de manera sencilla y comentada.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-3-1">Copiar código</button></div>
+<pre id="code-3-1"><code>import numpy as np
+
+# Creamos dos vectores sencillos para practicar operaciones básicas.
+vector_a = np.array([12, 15, 18, 20])
+vector_b = np.array([2, 4, 6, 8])
+
+print(&quot;Vector A:&quot;, vector_a)
+print(&quot;Vector B:&quot;, vector_b)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Vector A: [12 15 18 20]
+Vector B: [2 4 6 8]
+</pre></div>
+<div class="lesson-text"><h4>Suma y resta de vectores</h4>
+<p>Estas operaciones se realizan elemento por elemento. En proyectos de IA se utilizan continuamente cuando transformamos o combinamos características.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 2</span></div><button class="copy" data-target="code-3-2">Copiar código</button></div>
+<pre id="code-3-2"><code>print(&quot;Suma:&quot;, vector_a + vector_b)
+print(&quot;Resta:&quot;, vector_a - vector_b)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Suma: [14 19 24 28]
+Resta: [10 11 12 12]
+</pre></div>
+<div class="lesson-text"><h4>Producto punto</h4>
+<p>El producto punto combina dos vectores y devuelve un solo valor. Esta operación aparece en modelos lineales, redes neuronales y muchas fórmulas de Machine Learning.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 3</span></div><button class="copy" data-target="code-3-3">Copiar código</button></div>
+<pre id="code-3-3"><code>producto_punto = np.dot(vector_a, vector_b)
+print(&quot;Producto punto:&quot;, producto_punto)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Producto punto: 352
+</pre></div>
+<div class="lesson-text"><h4>Norma de un vector</h4>
+<p>La norma representa la magnitud o longitud de un vector. Nos permite medir qué tan grande es un vector en el espacio matemático.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 4</span></div><button class="copy" data-target="code-3-4">Copiar código</button></div>
+<pre id="code-3-4"><code>norma_a = np.linalg.norm(vector_a)
+print(&quot;Norma del vector A:&quot;, round(norma_a, 4))</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Norma del vector A: 33.0606
+</pre></div>
+<div class="lesson-text"><h4>Trabajamos con una matriz</h4>
+<p>Una matriz puede representar varios registros y varias características al mismo tiempo. Vamos a crear una matriz pequeña para visualizar la idea.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 5</span></div><button class="copy" data-target="code-3-5">Copiar código</button></div>
+<pre id="code-3-5"><code>matriz_ejemplo = np.array([
+    [12, 85, 14],
+    [9,  78, 12],
+    [15, 92, 16]
+])
+
+print(&quot;Matriz de ejemplo:&quot;)
+print(matriz_ejemplo)
+print(&quot;\nFilas y columnas:&quot;, matriz_ejemplo.shape)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Matriz de ejemplo:
+[[12 85 14]
+ [ 9 78 12]
+ [15 92 16]]
+
+Filas y columnas: (3, 3)
+</pre></div>
+<div class="lesson-text"><h4>Resolución de un sistema de ecuaciones lineales</h4>
+<p>El trabajo final también solicita resolver un sistema de ecuaciones lineales. Utilizaremos <code>np.linalg.solve()</code>.</p>
+<p>Trabajaremos con el siguiente sistema:</p>
+<ul>
+<li>2x + y - z = 8</li>
+<li>-3x - y + 2z = -11</li>
+<li>-2x + y + 2z = -3</li>
+</ul></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 6</span></div><button class="copy" data-target="code-3-6">Copiar código</button></div>
+<pre id="code-3-6"><code># Matriz de coeficientes.
+A = np.array([
+    [2, 1, -1],
+    [-3, -1, 2],
+    [-2, 1, 2]
+])
+
+# Vector de resultados.
+b = np.array([8, -11, -3])
+
+# Resolvemos el sistema Ax = b.
+solucion = np.linalg.solve(A, b)
+
+print(&quot;Solución [x, y, z]:&quot;, solucion)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Solución [x, y, z]: [ 2.  3. -1.]
+</pre></div>
+<div class="lesson-text"><h4>Cierre de esta etapa</h4>
+<p>Ya cumplimos con la parte de vectores y matrices: realizamos operaciones, producto punto, norma y resolvimos un sistema lineal.</p>
+<p><strong>En el siguiente cuaderno vamos a pasar a estadística:</strong> media, mediana, varianza, desviación estándar y detección de valores atípicos.</p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/03_ALGEBRA_LINEAL_CON_NUMPY.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/03_ALGEBRA_LINEAL_CON_NUMPY.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-4" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">04</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Estadística y valores atípicos</h2><p>En esta etapa vamos a medir cómo se distribuyen los datos y a identificar observaciones que se alejan de lo habitual.</p></div>
+  </div>
+  <div class="lesson-text"><p>En esta parte vamos a analizar la variable <code>promedio_final</code>.</p>
+<p>La estadística nos ayuda a resumir los datos y a entender cómo se comportan. Antes de crear un modelo de Machine Learning, conviene saber cuál es el promedio, cuál es el valor central y cuánto se dispersan las notas.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-4-1">Copiar código</button></div>
+<pre id="code-4-1"><code>import pandas as pd
+import numpy as np
+
+# Leemos nuevamente el dataset.
+df = pd.read_csv(&quot;../dataset/rendimiento_estudiantil_senati.csv&quot;)
+
+# Seleccionamos la variable que queremos analizar.
+serie = df[&quot;promedio_final&quot;]
+
+serie.head()</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">0    14.2
+1    12.0
+2    12.6
+3    13.9
+4    14.2
+Name: promedio_final, dtype: float64</pre></div>
+<div class="lesson-text"><h4>Media y mediana</h4>
+<p>La <strong>media</strong> representa el promedio general. La <strong>mediana</strong> nos indica el valor central cuando ordenamos los datos.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 2</span></div><button class="copy" data-target="code-4-2">Copiar código</button></div>
+<pre id="code-4-2"><code>media = serie.mean()
+mediana = serie.median()
+
+print(f&quot;Media del promedio final: {media:.2f}&quot;)
+print(f&quot;Mediana del promedio final: {mediana:.2f}&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Media del promedio final: 13.36
+Mediana del promedio final: 13.30
+</pre></div>
+<div class="lesson-text"><h4>Varianza y desviación estándar con NumPy</h4>
+<p>La varianza mide la dispersión de los datos respecto a la media. La desviación estándar expresa esa dispersión en la misma unidad de la variable original.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 3</span></div><button class="copy" data-target="code-4-3">Copiar código</button></div>
+<pre id="code-4-3"><code>varianza_numpy = np.var(serie, ddof=1)
+desviacion_numpy = np.std(serie, ddof=1)
+
+print(f&quot;Varianza con NumPy: {varianza_numpy:.2f}&quot;)
+print(f&quot;Desviación estándar con NumPy: {desviacion_numpy:.2f}&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Varianza con NumPy: 2.75
+Desviación estándar con NumPy: 1.66
+</pre></div>
+<div class="lesson-text"><h4>Ahora hacemos el cálculo manual</h4>
+<p>El trabajo final solicita implementar funciones o cálculos manuales, no solamente usar NumPy. Esto nos permite comprender qué está haciendo la librería internamente.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 4</span></div><button class="copy" data-target="code-4-4">Copiar código</button></div>
+<pre id="code-4-4"><code># Calculamos la media manualmente.
+n = len(serie)
+media_manual = sum(serie) / n
+
+# Calculamos la varianza muestral manualmente.
+varianza_manual = sum((valor - media_manual) ** 2 for valor in serie) / (n - 1)
+
+# La desviación estándar es la raíz cuadrada de la varianza.
+desviacion_manual = varianza_manual ** 0.5
+
+print(f&quot;Media manual: {media_manual:.2f}&quot;)
+print(f&quot;Varianza manual: {varianza_manual:.2f}&quot;)
+print(f&quot;Desviación estándar manual: {desviacion_manual:.2f}&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Media manual: 13.36
+Varianza manual: 2.75
+Desviación estándar manual: 1.66
+</pre></div>
+<div class="lesson-text"><h4>Detectamos valores atípicos</h4>
+<p>En esta solución utilizaremos un criterio sencillo: consideraremos atípicos los valores que estén por debajo de <code>media - 2 desviaciones estándar</code> o por encima de <code>media + 2 desviaciones estándar</code>.</p>
+<p>Este criterio es fácil de explicar y está alineado con el enfoque estadístico solicitado en el trabajo.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 5</span></div><button class="copy" data-target="code-4-5">Copiar código</button></div>
+<pre id="code-4-5"><code>limite_inferior = media - 2 * desviacion_numpy
+limite_superior = media + 2 * desviacion_numpy
+
+outliers = df[
+    (df[&quot;promedio_final&quot;] &lt; limite_inferior) |
+    (df[&quot;promedio_final&quot;] &gt; limite_superior)
+]
+
+print(f&quot;Límite inferior: {limite_inferior:.2f}&quot;)
+print(f&quot;Límite superior: {limite_superior:.2f}&quot;)
+print(f&quot;Cantidad de valores atípicos detectados: {len(outliers)}&quot;)
+
+outliers[[&quot;id_estudiante&quot;, &quot;promedio_final&quot;, &quot;rendimiento_categoria&quot;]]</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Límite inferior: 10.04
+Límite superior: 16.67
+Cantidad de valores atípicos detectados: 10
+</pre><div class="jupyter-output"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_estudiante</th>
+      <th>promedio_final</th>
+      <th>rendimiento_categoria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16</th>
+      <td>1017</td>
+      <td>16.8</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>1037</td>
+      <td>18.2</td>
+      <td>Excelente</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>1052</td>
+      <td>16.7</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>1061</td>
+      <td>17.0</td>
+      <td>Excelente</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>1129</td>
+      <td>9.4</td>
+      <td>Deficiente</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>1136</td>
+      <td>16.9</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>1182</td>
+      <td>9.8</td>
+      <td>Deficiente</td>
+    </tr>
+    <tr>
+      <th>214</th>
+      <td>1215</td>
+      <td>16.7</td>
+      <td>Bueno</td>
+    </tr>
+    <tr>
+      <th>222</th>
+      <td>1223</td>
+      <td>17.3</td>
+      <td>Excelente</td>
+    </tr>
+    <tr>
+      <th>255</th>
+      <td>1256</td>
+      <td>9.4</td>
+      <td>Deficiente</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 6</span></div><button class="copy" data-target="code-4-6">Copiar código</button></div>
+<pre id="code-4-6"><code># Guardamos los registros atípicos para utilizarlos como evidencia del proyecto.
+outliers.to_csv(&quot;../resultados/outliers_promedio_final.csv&quot;, index=False, encoding=&quot;utf-8-sig&quot;)
+
+print(&quot;Archivo guardado en: resultados/outliers_promedio_final.csv&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Archivo guardado en: resultados/outliers_promedio_final.csv
+</pre></div>
+<div class="lesson-text"><h4>Cierre de esta etapa</h4>
+<p>Ya tenemos una lectura estadística de los resultados: conocemos la tendencia central, la dispersión y los posibles valores atípicos.</p>
+<p><strong>En el siguiente cuaderno vamos a convertir estos números en gráficos para que la interpretación sea mucho más visual.</strong></p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/04_ESTADISTICA_Y_OUTLIERS.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/04_ESTADISTICA_Y_OUTLIERS.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-5" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">05</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Gráficos e interpretación</h2><p>Ahora convertiremos los números en gráficos para interpretar tendencias y relaciones de una forma más clara.</p></div>
+  </div>
+  <div class="lesson-text"><p>Hasta ahora hemos trabajado principalmente con tablas y números. En esta ocasión vamos a crear gráficos para entender mejor el comportamiento de los datos.</p>
+<p>El trabajo final solicita un <strong>histograma</strong> y un <strong>gráfico de dispersión</strong> utilizando Matplotlib y Seaborn.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-5-1">Copiar código</button></div>
+<pre id="code-5-1"><code>import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Leemos el dataset.
+df = pd.read_csv(&quot;../dataset/rendimiento_estudiantil_senati.csv&quot;)
+
+# Nos aseguramos de que la carpeta de resultados exista.
+os.makedirs(&quot;../resultados&quot;, exist_ok=True)
+
+sns.set_theme(style=&quot;whitegrid&quot;)</code></pre>
+</div>
+<div class="lesson-text"><h4>Histograma del promedio final</h4>
+<p>El histograma nos permite observar cómo se distribuyen las notas. Podemos identificar en qué rango se concentra la mayoría de estudiantes y si existen valores poco frecuentes.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 2</span></div><button class="copy" data-target="code-5-2">Copiar código</button></div>
+<pre id="code-5-2"><code>plt.figure(figsize=(9, 5))
+sns.histplot(df[&quot;promedio_final&quot;], kde=True, color=&quot;royalblue&quot;)
+plt.title(&quot;Distribución del promedio final&quot;)
+plt.xlabel(&quot;Promedio final&quot;)
+plt.ylabel(&quot;Frecuencia&quot;)
+plt.tight_layout()
+plt.savefig(&quot;../resultados/histograma_promedio_final.png&quot;, dpi=150)
+plt.show()</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">&lt;Figure size 900x500 with 1 Axes&gt;</pre></div>
+<div class="lesson-text"><h4>¿Cómo interpretamos el histograma?</h4>
+<p>La mayor parte de los promedios se concentra alrededor de los valores centrales. Esto coincide con la media y la mediana calculadas anteriormente. Los valores muy bajos o muy altos aparecen con menor frecuencia.</p></div>
+<div class="lesson-text"><h4>Gráfico de dispersión: horas de estudio vs. promedio final</h4>
+<p>Ahora queremos observar si existe una tendencia entre las horas de estudio semanal y el promedio final. Cada punto representa a un estudiante.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 3</span></div><button class="copy" data-target="code-5-3">Copiar código</button></div>
+<pre id="code-5-3"><code>plt.figure(figsize=(9, 5))
+sns.scatterplot(
+    data=df,
+    x=&quot;horas_estudio_semana&quot;,
+    y=&quot;promedio_final&quot;,
+    hue=&quot;rendimiento_categoria&quot;,
+    palette=&quot;deep&quot;
+)
+plt.title(&quot;Horas de estudio por semana vs. promedio final&quot;)
+plt.xlabel(&quot;Horas de estudio por semana&quot;)
+plt.ylabel(&quot;Promedio final&quot;)
+plt.tight_layout()
+plt.savefig(&quot;../resultados/dispersion_estudio_vs_promedio.png&quot;, dpi=150)
+plt.show()</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">&lt;Figure size 900x500 with 1 Axes&gt;</pre></div>
+<div class="lesson-text"><h4>¿Qué nos dice este gráfico?</h4>
+<p>Podemos observar una tendencia general: cuando aumentan las horas de estudio, el promedio final tiende a mejorar, aunque no es una relación perfecta. Esto es normal, porque el rendimiento académico también depende de otras variables como asistencia, evaluaciones previas, proyecto final y participación.</p>
+<p>Por eso, en vez de utilizar una sola variable, el modelo de Machine Learning trabajará con varias características al mismo tiempo.</p></div>
+<div class="lesson-text"><h4>Cierre de esta etapa</h4>
+<p>Ya contamos con evidencia visual que complementa nuestro análisis estadístico.</p>
+<p><strong>En el siguiente cuaderno vamos a entrenar el modelo de regresión y evaluar qué tan bien puede estimar el promedio final.</strong></p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/05_GRAFICOS_E_INTERPRETACION.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/05_GRAFICOS_E_INTERPRETACION.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-6" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">06</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Modelo de Machine Learning</h2><p>Con los datos ya preparados, entrenaremos el modelo y veremos cómo evaluar sus predicciones.</p></div>
+  </div>
+  <div class="lesson-text"><p>Llegamos a la parte que integra todo lo trabajado anteriormente.</p>
+<p>En esta ocasión vamos a construir un modelo de <strong>regresión Ridge</strong> para estimar el <code>promedio_final</code>. Elegimos regresión porque nuestra variable objetivo es numérica.</p>
+<p>El modelo estará dentro de un pipeline junto con el preprocesamiento. De esta manera, primero se limpian y transforman los datos y después se realiza el entrenamiento.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 1</span></div><button class="copy" data-target="code-6-1">Copiar código</button></div>
+<pre id="code-6-1"><code>import pandas as pd
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.linear_model import Ridge
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# Leemos el dataset.
+df = pd.read_csv(&quot;../dataset/rendimiento_estudiantil_senati.csv&quot;)
+
+# Separamos variables de entrada y variable objetivo.
+X = df.drop(columns=[&quot;promedio_final&quot;, &quot;rendimiento_categoria&quot;])
+y = df[&quot;promedio_final&quot;]</code></pre>
+</div>
+<div class="lesson-text"><h4>Reconstruimos el preprocesamiento</h4>
+<p>Aunque ya lo desarrollamos en el cuaderno 2, lo repetimos aquí para que este archivo pueda ejecutarse de manera independiente.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 2</span></div><button class="copy" data-target="code-6-2">Copiar código</button></div>
+<pre id="code-6-2"><code>columnas_numericas = [
+    &quot;edad&quot;, &quot;horas_estudio_semana&quot;, &quot;asistencia_pct&quot;,
+    &quot;tareas_completadas_pct&quot;, &quot;participacion_pct&quot;,
+    &quot;uso_plataforma_horas&quot;, &quot;tutorias_mes&quot;,
+    &quot;promedio_prev&quot;, &quot;examen_parcial&quot;, &quot;proyecto_final&quot;
+]
+
+columnas_categoricas = [&quot;genero&quot;, &quot;internet_calidad&quot;]
+
+proceso_numerico = Pipeline(steps=[
+    (&quot;imputar&quot;, SimpleImputer(strategy=&quot;median&quot;)),
+    (&quot;normalizar&quot;, StandardScaler())
+])
+
+proceso_categorico = Pipeline(steps=[
+    (&quot;imputar&quot;, SimpleImputer(strategy=&quot;most_frequent&quot;)),
+    (&quot;codificar&quot;, OneHotEncoder(handle_unknown=&quot;ignore&quot;))
+])
+
+preprocesador = ColumnTransformer(transformers=[
+    (&quot;num&quot;, proceso_numerico, columnas_numericas),
+    (&quot;cat&quot;, proceso_categorico, columnas_categoricas)
+])</code></pre>
+</div>
+<div class="lesson-text"><h4>Creamos el modelo</h4>
+<p>Ridge es una regresión lineal con regularización. Para este proyecto es apropiada porque es fácil de interpretar y funciona bien como modelo base.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 3</span></div><button class="copy" data-target="code-6-3">Copiar código</button></div>
+<pre id="code-6-3"><code>modelo = Ridge(alpha=1.0)
+
+pipeline = Pipeline(steps=[
+    (&quot;preprocesamiento&quot;, preprocesador),
+    (&quot;modelo&quot;, modelo)
+])
+
+print(&quot;Pipeline listo para entrenar.&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Pipeline listo para entrenar.
+</pre></div>
+<div class="lesson-text"><h4>Entrenamos y hacemos predicciones</h4>
+<p>Usaremos el 80 % de los registros para entrenar y el 20 % para evaluar.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 4</span></div><button class="copy" data-target="code-6-4">Copiar código</button></div>
+<pre id="code-6-4"><code>X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.20,
+    random_state=42
+)
+
+pipeline.fit(X_train, y_train)
+predicciones = pipeline.predict(X_test)
+
+print(&quot;Modelo entrenado correctamente.&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Modelo entrenado correctamente.
+</pre></div>
+<div class="lesson-text"><h4>Evaluamos el modelo</h4>
+<p>Utilizaremos tres métricas:</p>
+<ul>
+<li><strong>MAE:</strong> error absoluto medio. Mientras más pequeño, mejor.</li>
+<li><strong>RMSE:</strong> penaliza más los errores grandes. Mientras más pequeño, mejor.</li>
+<li><strong>R²:</strong> indica qué proporción de la variación del promedio final es explicada por el modelo. Mientras más cercano a 1, mejor.</li>
+</ul></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 5</span></div><button class="copy" data-target="code-6-5">Copiar código</button></div>
+<pre id="code-6-5"><code>mae = mean_absolute_error(y_test, predicciones)
+rmse = np.sqrt(mean_squared_error(y_test, predicciones))
+r2 = r2_score(y_test, predicciones)
+
+print(f&quot;MAE : {mae:.4f}&quot;)
+print(f&quot;RMSE: {rmse:.4f}&quot;)
+print(f&quot;R²  : {r2:.4f}&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">MAE : 0.7020
+RMSE: 0.8782
+R²  : 0.6644
+</pre></div>
+<div class="lesson-text"><h4>Comparamos algunos valores reales con las predicciones</h4>
+<p>Esta tabla nos permite ver ejemplos concretos. No buscamos que cada predicción sea idéntica al valor real, sino que el modelo se acerque razonablemente.</p></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 6</span></div><button class="copy" data-target="code-6-6">Copiar código</button></div>
+<pre id="code-6-6"><code>comparacion = pd.DataFrame({
+    &quot;Promedio real&quot;: y_test.values,
+    &quot;Promedio estimado&quot;: np.round(predicciones, 2)
+})
+
+comparacion.head(15)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><div class="jupyter-output"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Promedio real</th>
+      <th>Promedio estimado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11.1</td>
+      <td>10.62</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9.8</td>
+      <td>11.31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12.2</td>
+      <td>13.61</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13.6</td>
+      <td>15.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12.9</td>
+      <td>13.06</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>12.5</td>
+      <td>14.23</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>12.1</td>
+      <td>13.94</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>14.7</td>
+      <td>15.68</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>12.9</td>
+      <td>12.54</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>15.5</td>
+      <td>16.53</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>14.5</td>
+      <td>14.47</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12.3</td>
+      <td>12.93</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>14.6</td>
+      <td>13.56</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>15.7</td>
+      <td>14.96</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>13.8</td>
+      <td>12.86</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<div class="code-panel">
+<div class="code-head"><div><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="code-label">Python · paso 7</span></div><button class="copy" data-target="code-6-7">Copiar código</button></div>
+<pre id="code-6-7"><code># Guardamos las métricas y predicciones como evidencia del proyecto.
+metricas = pd.DataFrame({
+    &quot;metrica&quot;: [&quot;MAE&quot;, &quot;RMSE&quot;, &quot;R2&quot;],
+    &quot;valor&quot;: [round(mae, 4), round(rmse, 4), round(r2, 4)]
+})
+
+metricas.to_csv(&quot;../resultados/metricas_modelo.csv&quot;, index=False, encoding=&quot;utf-8-sig&quot;)
+comparacion.to_csv(&quot;../resultados/predicciones_prueba.csv&quot;, index=False, encoding=&quot;utf-8-sig&quot;)
+
+print(&quot;Resultados guardados correctamente.&quot;)</code></pre>
+</div>
+<div class="result-panel"><div class="result-head">Resultado de la ejecución</div><pre class="console">Resultados guardados correctamente.
+</pre></div>
+<div class="lesson-text"><h4>Interpretación del resultado</h4>
+<p>El modelo no pretende reemplazar una evaluación académica real. Su función en este proyecto es demostrar cómo los datos previamente preparados pueden utilizarse para construir una predicción.</p>
+<p>Con un R² alrededor de 0.66 en este dataset, el modelo logra explicar una parte importante de la variación del promedio final. El resultado es razonable para un ejercicio académico con datos sintéticos y múltiples factores que influyen en el rendimiento.</p></div>
+<div class="lesson-text"><h4>Cierre de esta etapa</h4>
+<p>Ya completamos el flujo técnico del proyecto: datos, preprocesamiento, matemáticas, estadística, gráficos y Machine Learning.</p>
+<p><strong>En el último cuaderno vamos a responder las preguntas guía y redactar las conclusiones de manera clara y natural.</strong></p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/06_MODELO_MACHINE_LEARNING.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/06_MODELO_MACHINE_LEARNING.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="capitulo-7" class="chapter searchable">
+  <div class="chapter-header">
+    <div class="chapter-number">07</div>
+    <div><div class="eyebrow">DESARROLLO PASO A PASO</div><h2>Preguntas guía y conclusiones</h2><p>Para cerrar el proyecto, responderemos las preguntas del trabajo final usando lo que realmente hicimos.</p></div>
+  </div>
+  <div class="lesson-text"><p>En este último cuaderno vamos a responder las preguntas planteadas en el trabajo final utilizando lo que realmente hicimos durante el proyecto.</p>
+<p>La intención es que las respuestas no parezcan definiciones aisladas, sino que tengan relación directa con nuestro proceso de trabajo.</p></div>
+<div class="lesson-text"><h4>1) ¿Cómo seleccionar un dataset adecuado para un problema de Machine Learning?</h4>
+<p>Primero debemos tener claro qué problema queremos resolver. En nuestro caso queríamos estimar el promedio final de un estudiante, por eso seleccionamos variables relacionadas con su rendimiento: horas de estudio, asistencia, tareas, participación, notas previas y proyecto final.</p>
+<p>También revisamos que el dataset tuviera suficientes registros, variables numéricas y categóricas, y algunos problemas reales como valores faltantes. Esto nos permitió practicar todo el flujo solicitado en el trabajo.</p></div>
+<div class="lesson-text"><h4>2) ¿Cuál es la importancia de normalizar los datos antes de entrenar un modelo?</h4>
+<p>No todas las variables se encuentran en la misma escala. Por ejemplo, una nota puede ir de 0 a 20 mientras que la asistencia puede llegar a 100. Si no normalizamos, algunas variables pueden tener más influencia solamente por tener números más grandes.</p>
+<p>Por esa razón utilizamos <code>StandardScaler</code> dentro del pipeline. Así las variables numéricas se llevan a una escala comparable antes del entrenamiento.</p></div>
+<div class="lesson-text"><h4>3) ¿Qué impacto tiene la varianza y la desviación estándar en la calidad del modelo?</h4>
+<p>La varianza y la desviación estándar nos muestran cuánto se dispersan los datos. Si una variable tiene valores muy alejados de lo habitual, puede introducir ruido o afectar el aprendizaje del modelo.</p>
+<p>En nuestro proyecto calculamos estas medidas sobre el promedio final y utilizamos la desviación estándar para identificar posibles valores atípicos. De esta manera entendimos mejor la distribución antes de entrenar.</p></div>
+<div class="lesson-text"><h4>4) ¿Cómo interpretar los gráficos estadísticos generados a partir de un dataset?</h4>
+<p>El histograma nos permitió observar dónde se concentran la mayoría de los promedios y si existen valores poco frecuentes.</p>
+<p>El gráfico de dispersión nos permitió comparar las horas de estudio con el promedio final. Observamos una tendencia positiva, pero también vimos que no todos los estudiantes con más horas de estudio obtienen exactamente el mismo resultado. Esto confirma que el rendimiento depende de varias variables y no de una sola.</p></div>
+<div class="lesson-text"><h4>5) ¿Cuáles son las técnicas más utilizadas para la detección de valores atípicos?</h4>
+<p>Entre las técnicas más conocidas están la desviación estándar, el rango intercuartílico, el z-score y los boxplots.</p>
+<p>En esta solución utilizamos el criterio de <strong>media ± 2 desviaciones estándar</strong>, porque es fácil de explicar y está relacionado directamente con los contenidos de estadística solicitados en el trabajo final.</p></div>
+<div class="lesson-text"><ol>
+<li>1. El análisis inicial del dataset permitió conocer su estructura, identificar variables útiles y detectar valores faltantes antes de entrenar el modelo.</li>
+</ol>
+<ol>
+<li>2. El preprocesamiento fue una etapa necesaria para tratar datos incompletos, normalizar variables numéricas y codificar variables categóricas de manera adecuada.</li>
+</ol>
+<ol>
+<li>3. Las operaciones con vectores y matrices demostraron la relación entre álgebra lineal y Machine Learning, especialmente mediante producto punto, norma y resolución de sistemas lineales.</li>
+</ol>
+<ol>
+<li>4. El cálculo de media, mediana, varianza y desviación estándar permitió comprender la distribución del promedio final y detectar valores atípicos.</li>
+</ol>
+<ol>
+<li>5. Los gráficos ayudaron a interpretar de forma visual el comportamiento de los datos y la relación entre algunas variables.</li>
+</ol>
+<ol>
+<li>6. Finalmente, el modelo de regresión Ridge permitió estimar el promedio final utilizando varias características al mismo tiempo, completando así un flujo básico pero completo de Machine Learning.</li>
+</ol></div>
+<div class="lesson-text"><ul>
+<li>Trabajar siempre con una copia del dataset original antes de realizar modificaciones.</li>
+<li>Revisar los valores nulos y atípicos antes de entrenar cualquier modelo.</li>
+<li>Comparar más de un algoritmo cuando el proyecto pase de una demostración académica a una aplicación real.</li>
+<li>Utilizar más registros y datos reales si la empresa desea convertir la propuesta en una solución productiva.</li>
+<li>Mantener el preprocesamiento y el modelo dentro de un pipeline para reducir errores y facilitar la reproducción del proceso.</li>
+</ul></div>
+<div class="lesson-text"><p>Con estos cuadernos hemos desarrollado todos los puntos técnicos solicitados en el caso práctico: <strong>Pandas, preprocesamiento, normalización, codificación, NumPy, vectores, matrices, producto punto, norma, sistema de ecuaciones, estadística, varianza, desviación estándar, valores atípicos, Matplotlib, Seaborn y un modelo de regresión con Scikit-learn</strong>.</p>
+<p>El proyecto queda organizado de forma progresiva para que pueda ser explicado en clase o presentado como evidencia de trabajo.</p></div>
+  <div class="chapter-actions">
+    <a href="files/notebooks/07_PREGUNTAS_GUIA_Y_CONCLUSIONES.ipynb" download>Descargar cuaderno .ipynb</a>
+    <a href="files/python/07_PREGUNTAS_GUIA_Y_CONCLUSIONES.py" download>Descargar código .py</a>
+  </div>
+</section>
+
+<section id="resultados" class="chapter searchable">
+  <div class="chapter-header"><div class="chapter-number">R</div><div><div class="eyebrow">EVIDENCIAS DEL PROYECTO</div><h2>Resultados obtenidos</h2><p>Estas métricas y gráficos se generaron al ejecutar el desarrollo completo con el dataset incluido en el proyecto.</p></div></div>
+  <div class="metrics"><div><small>MAE</small><strong>0.702</strong><p>Error absoluto medio.</p></div><div><small>RMSE</small><strong>0.8782</strong><p>Penaliza con mayor fuerza los errores grandes.</p></div><div><small>R²</small><strong>0.6644</strong><p>Proporción de variabilidad explicada.</p></div></div>
+  <div class="charts"><figure><img src="assets/histograma_promedio_final.png"><figcaption>Distribución del promedio final.</figcaption></figure><figure><img src="assets/dispersion_estudio_vs_promedio.png"><figcaption>Relación entre horas de estudio y promedio final.</figcaption></figure></div>
+</section>
+<section id="archivos" class="chapter searchable">
+  <div class="chapter-header"><div class="chapter-number">A</div><div><div class="eyebrow">MATERIAL COMPLETO</div><h2>Archivos del proyecto</h2><p>En esta sección están todos los recursos usados para que el estudiante pueda repetir el trabajo, revisar el código o continuar el proyecto.</p></div></div>
+  <div class="file-grid"><a class="file-card" href="files/notebooks/00_PRESENTACION_Y_RUTA.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>00_PRESENTACION_Y_RUTA.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/01_LEEMOS_Y_CONOCEMOS_EL_DATASET.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>01_LEEMOS_Y_CONOCEMOS_EL_DATASET.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/02_LIMPIEZA_Y_PREPROCESAMIENTO.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>02_LIMPIEZA_Y_PREPROCESAMIENTO.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/03_ALGEBRA_LINEAL_CON_NUMPY.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>03_ALGEBRA_LINEAL_CON_NUMPY.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/04_ESTADISTICA_Y_OUTLIERS.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>04_ESTADISTICA_Y_OUTLIERS.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/05_GRAFICOS_E_INTERPRETACION.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>05_GRAFICOS_E_INTERPRETACION.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/06_MODELO_MACHINE_LEARNING.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>06_MODELO_MACHINE_LEARNING.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/notebooks/07_PREGUNTAS_GUIA_Y_CONCLUSIONES.ipynb" download><div class="file-type">Cuaderno Jupyter</div><strong>07_PREGUNTAS_GUIA_Y_CONCLUSIONES.ipynb</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/00_PRESENTACION_Y_RUTA.py" download><div class="file-type">Código Python</div><strong>00_PRESENTACION_Y_RUTA.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/01_LEEMOS_Y_CONOCEMOS_EL_DATASET.py" download><div class="file-type">Código Python</div><strong>01_LEEMOS_Y_CONOCEMOS_EL_DATASET.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/02_LIMPIEZA_Y_PREPROCESAMIENTO.py" download><div class="file-type">Código Python</div><strong>02_LIMPIEZA_Y_PREPROCESAMIENTO.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/03_ALGEBRA_LINEAL_CON_NUMPY.py" download><div class="file-type">Código Python</div><strong>03_ALGEBRA_LINEAL_CON_NUMPY.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/04_ESTADISTICA_Y_OUTLIERS.py" download><div class="file-type">Código Python</div><strong>04_ESTADISTICA_Y_OUTLIERS.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/05_GRAFICOS_E_INTERPRETACION.py" download><div class="file-type">Código Python</div><strong>05_GRAFICOS_E_INTERPRETACION.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/06_MODELO_MACHINE_LEARNING.py" download><div class="file-type">Código Python</div><strong>06_MODELO_MACHINE_LEARNING.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/07_PREGUNTAS_GUIA_Y_CONCLUSIONES.py" download><div class="file-type">Código Python</div><strong>07_PREGUNTAS_GUIA_Y_CONCLUSIONES.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/python/PROYECTO_COMPLETO.py" download><div class="file-type">Código Python</div><strong>PROYECTO_COMPLETO.py</strong><span>Descargar archivo</span></a><a class="file-card" href="files/data/diccionario_datos.txt" download><div class="file-type">Datos</div><strong>diccionario_datos.txt</strong><span>Descargar archivo</span></a><a class="file-card" href="files/data/rendimiento_estudiantil_senati.csv" download><div class="file-type">Datos</div><strong>rendimiento_estudiantil_senati.csv</strong><span>Descargar archivo</span></a><a class="file-card" href="files/results/dispersion_estudio_vs_promedio.png" download><div class="file-type">Resultado</div><strong>dispersion_estudio_vs_promedio.png</strong><span>Descargar archivo</span></a><a class="file-card" href="files/results/histograma_promedio_final.png" download><div class="file-type">Resultado</div><strong>histograma_promedio_final.png</strong><span>Descargar archivo</span></a><a class="file-card" href="files/results/metricas_modelo.csv" download><div class="file-type">Resultado</div><strong>metricas_modelo.csv</strong><span>Descargar archivo</span></a><a class="file-card" href="files/results/outliers_promedio_final.csv" download><div class="file-type">Resultado</div><strong>outliers_promedio_final.csv</strong><span>Descargar archivo</span></a><a class="file-card" href="files/results/predicciones_prueba.csv" download><div class="file-type">Resultado</div><strong>predicciones_prueba.csv</strong><span>Descargar archivo</span></a><a class="file-card" href="files/reference/PIAD-426_TRABAJOFINAL.pdf" download><div class="file-type">Documento base</div><strong>PIAD-426_TRABAJOFINAL.pdf</strong><span>Descargar archivo</span></a><a class="file-card" href="files/requirements.txt" download><div class="file-type">Dependencias</div><strong>requirements.txt</strong><span>Descargar archivo</span></a></div>
+</section>
+</main>
+<footer><img src="assets/logo_senati.png"><div><b>Fundamentos y Algoritmia para Inteligencia Artificial</b><span>Instructor: Ing. Gunar Castro Iñigo</span></div></footer>
+</div>
+</div>
+<script src="app.js"></script>
+</body></html>

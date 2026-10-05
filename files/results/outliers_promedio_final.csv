@@ -1,0 +1,11 @@
+﻿id_estudiante,edad,genero,horas_estudio_semana,asistencia_pct,tareas_completadas_pct,participacion_pct,uso_plataforma_horas,internet_calidad,tutorias_mes,promedio_prev,examen_parcial,proyecto_final,promedio_final,rendimiento_categoria
+1017,24,M,15.1,93.4,97.9,76.3,11.4,Alta,0,14.4,11.9,12.9,16.8,Bueno
+1037,17,M,10.9,100.0,,70.3,5.3,Alta,1,18.2,18.3,14.2,18.2,Excelente
+1052,21,M,7.8,94.0,93.5,61.3,5.7,Alta,4,14.7,12.9,17.0,16.7,Bueno
+1061,28,F,20.2,67.8,94.9,88.7,11.5,Media,1,17.0,18.8,16.5,17.0,Excelente
+1129,27,M,12.5,67.9,68.5,74.7,1.8,Alta,3,9.6,8.5,10.6,9.4,Deficiente
+1136,27,F,13.1,86.4,68.9,100.0,7.1,Media,5,17.2,14.2,15.3,16.9,Bueno
+1182,20,M,5.2,89.7,83.9,69.4,0.0,Media,2,9.0,12.4,12.3,9.8,Deficiente
+1215,25,F,10.7,85.0,84.9,94.9,7.5,Media,1,16.4,17.6,15.3,16.7,Bueno
+1223,25,F,14.5,92.3,88.8,74.8,7.2,Media,3,17.3,14.1,16.9,17.3,Excelente
+1256,21,M,10.1,73.6,78.7,85.4,6.2,Media,2,10.6,11.1,7.0,9.4,Deficiente

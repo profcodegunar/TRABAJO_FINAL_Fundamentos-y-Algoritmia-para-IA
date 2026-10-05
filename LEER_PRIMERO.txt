@@ -1,0 +1,8 @@
+APLICACIÓN WEB PROFESIONAL - SENATI
+
+1. Descomprimir la carpeta.
+2. Abrir index.html con Chrome, Edge o Firefox.
+3. La aplicación funciona sin Internet.
+4. Todos los archivos de trabajo están en la carpeta files.
+
+Instructor: Ing. Gunar Castro Iñigo

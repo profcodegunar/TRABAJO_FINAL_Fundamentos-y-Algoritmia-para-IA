@@ -1,0 +1,20 @@
+Proyecto: Análisis y Desarrollo de Algoritmos para Inteligencia Artificial con Fundamento Matemático
+Dataset: rendimiento_estudiantil_senati.csv
+Descripción general: conjunto de datos simulado con comportamiento realista para evaluar el rendimiento académico.
+
+Campos:
+- id_estudiante: identificador único.
+- edad: edad del estudiante.
+- genero: F o M.
+- horas_estudio_semana: horas promedio de estudio por semana.
+- asistencia_pct: porcentaje de asistencia.
+- tareas_completadas_pct: porcentaje de tareas entregadas.
+- participacion_pct: nivel de participación en clase.
+- uso_plataforma_horas: horas de uso de plataforma virtual por semana.
+- internet_calidad: Baja, Media o Alta.
+- tutorias_mes: cantidad de tutorías recibidas al mes.
+- promedio_prev: promedio del periodo anterior.
+- examen_parcial: nota del examen parcial.
+- proyecto_final: nota del proyecto.
+- promedio_final: nota final objetivo para el modelo de regresión.
+- rendimiento_categoria: categoría del rendimiento.
